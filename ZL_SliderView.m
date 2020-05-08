@@ -51,14 +51,14 @@
 
 - (void)leftButtonTouch {
     if (self.offset_x > 0) {
-        self.offset_x -= ZL_SCREEN_WIDTH / 3 * 2;
+        self.offset_x -= ZL_SCREEN_WIDTH / 3;
     }
     [self.collectionView setContentOffset:CGPointMake(self.offset_x, 0) animated:YES];
 }
 
 - (void)rightButtonTouch {
-    if (self.offset_x < ((_titleArray.count + 2 - 4) / 2) * (ZL_SCREEN_WIDTH * 2 / 3)) {
-        self.offset_x += ZL_SCREEN_WIDTH / 3 * 2;
+    if (self.offset_x < (_titleArray.count + 2 - 4) * (ZL_SCREEN_WIDTH / 3)) {
+        self.offset_x += ZL_SCREEN_WIDTH / 3;
     }
     [self.collectionView setContentOffset:CGPointMake(self.offset_x, 0) animated:YES];
 }
@@ -68,15 +68,15 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat moveWidth = scrollView.contentOffset.x;
     self.leftButton.enabled = moveWidth > 0;
-    self.rightButton.enabled = (moveWidth < ((_titleArray.count + 2 - 4) / 2) * (ZL_SCREEN_WIDTH * 2 / 3));
+    self.rightButton.enabled = (moveWidth < (_titleArray.count + 2 - 4) * (ZL_SCREEN_WIDTH / 3));
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     CGFloat moveWidth = scrollView.contentOffset.x;
-    if ((NSInteger)moveWidth % (NSInteger)(ZL_SCREEN_WIDTH * 2 / 3) < ZL_SCREEN_WIDTH / 3) {
-        self.offset_x = ((NSInteger)moveWidth / (NSInteger)(ZL_SCREEN_WIDTH * 2 / 3)) * (ZL_SCREEN_WIDTH * 2 / 3);
+    if ((NSInteger)moveWidth % (NSInteger)(ZL_SCREEN_WIDTH / 3) < ZL_SCREEN_WIDTH / 6) {
+        self.offset_x = ((NSInteger)moveWidth / (NSInteger)(ZL_SCREEN_WIDTH / 3)) * (ZL_SCREEN_WIDTH / 3);
     } else {
-        self.offset_x = ((NSInteger)moveWidth / (NSInteger)(ZL_SCREEN_WIDTH * 1 / 3) + 1) / 2 * (ZL_SCREEN_WIDTH * 2 / 3);
+        self.offset_x = ((NSInteger)moveWidth / (NSInteger)(ZL_SCREEN_WIDTH * 1 / 3) + 1) * (ZL_SCREEN_WIDTH / 3);
     }
     [self.collectionView setContentOffset:CGPointMake(self.offset_x, 0) animated:YES];
 }
@@ -84,10 +84,10 @@
 - (void)scrollViewWillBeginDecelerating: (UIScrollView *)scrollView {
     [scrollView setContentOffset:scrollView.contentOffset animated:NO];
     CGFloat moveWidth = scrollView.contentOffset.x;
-    if ((NSInteger)moveWidth % (NSInteger)(ZL_SCREEN_WIDTH * 2 / 3) < ZL_SCREEN_WIDTH / 3) {
-        self.offset_x = ((NSInteger)moveWidth / (NSInteger)(ZL_SCREEN_WIDTH * 2 / 3)) * (ZL_SCREEN_WIDTH * 2 / 3);
+    if ((NSInteger)moveWidth % (NSInteger)(ZL_SCREEN_WIDTH / 3) < ZL_SCREEN_WIDTH / 6) {
+        self.offset_x = ((NSInteger)moveWidth / (NSInteger)(ZL_SCREEN_WIDTH / 3)) * (ZL_SCREEN_WIDTH / 3);
     } else {
-        self.offset_x = ((NSInteger)moveWidth / (NSInteger)(ZL_SCREEN_WIDTH * 1 / 3) + 1) / 2 * (ZL_SCREEN_WIDTH * 2 / 3);
+        self.offset_x = ((NSInteger)moveWidth / (NSInteger)(ZL_SCREEN_WIDTH * 1 / 3) + 1) * (ZL_SCREEN_WIDTH / 3);
     }
     [self.collectionView setContentOffset:CGPointMake(self.offset_x, 0) animated:YES];
 }
@@ -96,10 +96,10 @@
     if (!decelerate) {
         [scrollView setContentOffset:scrollView.contentOffset animated:NO];
         CGFloat moveWidth = scrollView.contentOffset.x;
-        if ((NSInteger)moveWidth % (NSInteger)(ZL_SCREEN_WIDTH * 2 / 3) < ZL_SCREEN_WIDTH / 3) {
-            self.offset_x = ((NSInteger)moveWidth / (NSInteger)(ZL_SCREEN_WIDTH * 2 / 3)) * (ZL_SCREEN_WIDTH * 2 / 3);
+        if ((NSInteger)moveWidth % (NSInteger)(ZL_SCREEN_WIDTH / 3) < ZL_SCREEN_WIDTH / 6) {
+            self.offset_x = ((NSInteger)moveWidth / (NSInteger)(ZL_SCREEN_WIDTH / 3)) * (ZL_SCREEN_WIDTH / 3);
         } else {
-            self.offset_x = ((NSInteger)moveWidth / (NSInteger)(ZL_SCREEN_WIDTH * 1 / 3) + 1) / 2 * (ZL_SCREEN_WIDTH * 2 / 3);
+            self.offset_x = ((NSInteger)moveWidth / (NSInteger)(ZL_SCREEN_WIDTH * 1 / 3) + 1) * (ZL_SCREEN_WIDTH / 3);
         }
         [self.collectionView setContentOffset:CGPointMake(self.offset_x, 0) animated:YES];
     }

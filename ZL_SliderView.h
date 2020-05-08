@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZL_SliderView : UIView
 
+// titleArray.count必须大于2
 @property (nonatomic, strong) NSArray *titleArray;
 
 @end
